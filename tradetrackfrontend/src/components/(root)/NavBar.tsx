@@ -1,9 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { Menu, MenuItem } from "../ui/navbar-menu";
 import { cn } from "@/lib/utils";
 import { Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTheme } from "next-themes";
 
 export default function NavBar() {
   return (
@@ -14,28 +15,23 @@ export default function NavBar() {
 }
 
 function Navbar({ className }: { className?: string }) {
-  const [theme, setTheme] = useState<string>("light");
-
-  const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
-    document.documentElement.classList.toggle("dark", theme !== "dark");
-  };
+  const { theme, setTheme } = useTheme();
 
   return (
     <div
       className={cn(
-        "fixed top-20 inset-x-0 max-w-2xl mx-auto mt-5 z-50",
+        "fixed top-20 inset-x-0 max-w-2xl mx-auto mt-5 z-50 bg-white dark:bg-gray-900 transition-colors duration-200",
         className
       )}>
       <Menu>
         <div className="flex items-center gap-4">
-          <MenuItem item="Services" />
-          <MenuItem item="Products" />
-          <MenuItem item="Pricing" />
+          <MenuItem item="Home" />
+          <MenuItem item="About" />
+          <MenuItem item="Contact" />
           <Button
             variant="ghost"
             size="icon"
-            onClick={toggleTheme}
+            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
             className="h-8 w-8 p-0">
             <Sun
               className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
@@ -43,7 +39,7 @@ function Navbar({ className }: { className?: string }) {
             />
             <Moon
               className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
-              color="white"
+              color={theme === "dark" ? "white" : "black"}
             />
             <span className="sr-only">Toggle theme</span>
           </Button>

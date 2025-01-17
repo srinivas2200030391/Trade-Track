@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { cn } from "@/lib/utils";
 
 // Load fonts
 const geistSans = Geist({
@@ -18,16 +19,19 @@ export const metadata: Metadata = {
   title: "Portfolio Tracker",
   description: "A portfolio tracking application",
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        className={cn(
+          geistSans.variable,
+          geistMono.variable,
+          "antialiased min-h-screen bg-white dark:bg-gray-900"
+        )}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
