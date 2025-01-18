@@ -4,6 +4,7 @@ import com.tradetrack.models.Admin;
 import com.tradetrack.services.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class AdminController {
     // Create a new admin
     @PostMapping
     public ResponseEntity<Admin> createAdmin(@RequestBody Admin admin) {
+        admin.setPassword(new BCryptPasswordEncoder(5).encode(admin.getPassword()));
         return ResponseEntity.ok(adminService.createAdmin(admin));
     }
 

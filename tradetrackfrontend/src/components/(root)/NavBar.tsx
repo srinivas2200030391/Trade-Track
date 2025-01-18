@@ -20,7 +20,7 @@ function Navbar({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "fixed top-20 inset-x-0 max-w-2xl mx-auto mt-5 z-50 bg-white dark:bg-gray-900 transition-colors duration-200",
+        "fixed top-20 inset-x-0 max-w-2xl mx-auto mt-5 z-50 bg-white rounded-full dark:bg-gray-900 transition-colors duration-200",
         className
       )}>
       <Menu>
@@ -34,12 +34,18 @@ function Navbar({ className }: { className?: string }) {
             onClick={() => setTheme(theme === "light" ? "dark" : "light")}
             className="h-8 w-8 p-0">
             <Sun
-              className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
-              color={theme === "dark" ? "white" : "black"}
+              className={cn(
+                "h-4 w-4 transition-all",
+                theme === "dark" ? "rotate-90 scale-0" : "rotate-0 scale-100"
+              )}
             />
             <Moon
-              className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
-              color={theme === "dark" ? "white" : "black"}
+              className={cn(
+                "absolute h-4 w-4 transition-all",
+                theme === "dark"
+                  ? "rotate-0 scale-100 text-white"
+                  : "rotate-90 scale-0 text-black"
+              )}
             />
             <span className="sr-only">Toggle theme</span>
           </Button>

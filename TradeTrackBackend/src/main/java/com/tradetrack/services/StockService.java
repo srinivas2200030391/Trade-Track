@@ -18,7 +18,7 @@ public class StockService {
     }
 
     public List<Stock> getStocksByUserId(Long userId) {
-        return stockRepository.findByUserId(userId);
+        return stockRepository.findByClientId(userId);
     }
 
     public Stock updateStock(Long id, Stock updatedStock) {

@@ -45,12 +45,12 @@ public class Stock {
         this.buyPrice = buyPrice;
     }
 
-    public User getUser() {
-        return user;
+    public Users getUser() {
+        return client;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(Users users) {
+        this.client = users;
     }
 
     @Id
@@ -72,7 +72,7 @@ public class Stock {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     @JsonBackReference
-    private User user;
+    private Users client;
 
 
 }

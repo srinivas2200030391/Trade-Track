@@ -1,11 +1,10 @@
-import Home from "@/components/(root)/Home";
 import React from "react";
+import { SideNavBar } from "./SideNavBar";
 
 export default function page() {
-
   return (
     <div>
-      <Home />
+      <SideNavBar />
     </div>
   );
 }
