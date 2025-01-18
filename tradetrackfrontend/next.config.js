@@ -3,7 +3,7 @@ module.exports = {
   images: {
     domains: ["res.cloudinary.com", "assets.aceternity.com"],
   },
-  esling: {
+  eslint: {
     ignoreDuringBuilds: true,
   },
 };
